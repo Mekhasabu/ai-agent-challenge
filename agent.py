@@ -10,7 +10,7 @@ import importlib.util
 from pathlib import Path
 
 # Configure Gemini API
-GEMINI_API_KEY = "AIzaSyBozlpXlbCkguGidDXk66YmTzoHQ5zQpDI"  # Replace with your actual API key
+GEMINI_API_KEY = "your API key"  # Replace with your actual API key
 genai.configure(api_key=GEMINI_API_KEY)
 
 def extract_text_from_pdf(pdf_path):
