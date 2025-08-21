@@ -24,9 +24,19 @@ cd ai-agent-challenge
 # Install dependencies
 pip install pandas pdfplumber pytest google-generativeai
 
--Get a Gemini API key from https://aistudio.google.com/
+---
+
+## 🔑 API Setup
+
+The agent uses Google Gemini API.
+- Get a Gemini API key from https://aistudio.google.com/
+Set your API key:
+GEMINI_API_KEY "your_api_key_here"
+
 Replace `your-gemini-api-key-here` in `agent.py` with your actual key
-Usage
+---
+
+## 🚀 Usage
 
 Run the agent for a bank (example: ICICI):
 
@@ -43,10 +53,10 @@ pytest tests/test_parser.py -v
 
 
 ✅ Green test means the parser works correctly.
-Agent Design
 
-The agent follows a self-correcting loop:
+# Agent Workflow
 
+```mermaid
 flowchart TD
     A[Extract PDF + CSV] --> B[Plan Schema & Logic]
     B --> C[Generate Parser Code with Gemini]
@@ -55,12 +65,4 @@ flowchart TD
     D -->|Fail| B
 
 
-Extract: Reads text from sample PDF (pdfplumber) and schema from CSV.
 
-Plan: Analyzes structure of expected output.
-
-Generate: Uses Gemini LLM to write a parser (parse(pdf_path) -> DataFrame).
-
-Test: Runs parser and compares result to CSV (pandas.DataFrame.equals).
-
-Refine: If test fails, retries with improved prompt (up to 3 attempts).
